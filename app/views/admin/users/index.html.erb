@@ -1,0 +1,21 @@
+<h1>Study Users</h1>
+<p><%= pluralize( User.count, "user" ) %> registered for this study.</p>
+<%= link_to "Add New", new_admin_user_path, :class => "section-link" %>
+
+<hr/>
+
+<table cellspacing="10">
+	<tr>
+		<th>ID</th>
+		<th>Hashed Email</th>
+		<th>Delete</th>
+	</tr>
+		
+	<% User.all.each do |user| %>
+		<tr>
+			<td><%= user.id %></td>
+			<td><%= user.id_hash %></td>
+			<td><%= link_to "Delete", admin_user_path( user ), :method => :delete, :confirm => "Are you sure you want to delete this user?", :class => "section-link" %></td>		
+		</tr>	
+	<% end %>
+</table>

@@ -1,0 +1,12 @@
+<div class='action-box'>
+<h1>Stoop Test</h1>
+
+<%= form_tag( sign_in_study_index_path, :method => :post ) %>
+	<table>
+		<tr><td>Email:</td><td><%= text_field_tag( :email ) %></td></tr>
+		<% if @error %>
+			<tr><td></td><td><%= @error %></td></tr>
+		<% end %>
+		<tr><td></td><td><%= submit_tag( "Sign In" ) %></td></tr>
+	</table>
+</div>

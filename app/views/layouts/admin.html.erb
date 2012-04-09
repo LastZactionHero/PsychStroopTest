@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stoop Test: Administrator</title>
+  <%= stylesheet_link_tag  'scaffold', 'admin' %>
+  
+  <%= javascript_include_tag "jquery.min.js" %>
+  <%= javascript_include_tag "jquery_ujs.js" %>
+  <%= javascript_include_tag "jquery.elastic.source.js" %>
+  
+  
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<div id="header-bar">
+	<div id="left-links">
+	<p class="header-text">Stroop Test - Administration</p>
+	<p class="breadcrumbs"><%=raw get_bread_crumb(request.fullpath) %></p>
+	</div>
+	
+	<div id="right-links">
+		<p class="breadcrumbs"><%= link_to "Sign Out", admin_sign_out_path %></p>
+	</div>
+</div>
+
+<div id="content">
+	<%= yield %>
+</div>
+
+</body>
+</html>
