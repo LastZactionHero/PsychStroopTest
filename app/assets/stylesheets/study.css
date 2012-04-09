@@ -34,3 +34,42 @@ body {
 .action-box .next-link a {
   color: #333333;
 }
+
+#alert-box {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  
+  color: white;
+  font-size: 0.75em;
+}
+
+#study-box {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  
+  font-size: 4em;
+  text-align: center;
+}
+
+#study-box .focus {
+  color: white;    
+}
+
+#study-box .red {
+  color: red;    
+}
+
+#study-box .blue {
+  color: blue;    
+}
+
+#study-box .green {
+  color: green;    
+}
+
+#study-box .yellow {
+  color: yellow;    
+}

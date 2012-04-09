@@ -1,1 +1,121 @@
-<h1>test</h1>
+<div id='alert-box'>
+</div>
+
+<div id='study-box'>
+	<p class='focus'>&nbps;</p>	
+</div>
+
+
+<script type="text/javascript">
+
+	$( document ).ready( function() {
+	
+		$( document ).keydown( function( event ){ keyPress( event ) } );					
+		initTest();		
+		testCycle();
+	} );
+
+
+	var keyColor = null;
+	function keyPress( event ) {
+		keyColor = null;
+		
+		var keyCode = event.which;
+				
+		if( keyCode == 83 ) {
+			keyColor = 'red';
+		} else if ( keyCode == 70 ) {
+			keyColor = 'green';
+		} else if ( keyCode == 74 ) {
+			keyColor = 'blue';
+		} else if ( keyCode == 76 ) {
+			keyColor = 'yellow';
+		}
+		
+		if( testState == 'testing' ) {
+			if( keyColor != null ) {
+				clearTimeout( timeoutId );
+				testState = 'responded';
+				testCycle();	
+			} else {
+				setAlert( "Invalid key. S = Red, F = Green, J = Blue, L = Yellow" );
+			}
+		}		
+	}
+	
+	function centerWord() {
+		var docHeight = $( document ).height();
+		var boxHeight = $( "#study-box" ).height();		
+		var boxTop = ( docHeight - 4 * boxHeight ) / 2
+		$( "#study-box" ).css( 'top', boxTop );	
+	}
+	
+	var testState = null;
+	function initTest() {
+		testState = 'new';		
+	}
+	
+	var timeoutId = null;
+	var currentColor = null;
+	var currentWord = null;
+	var startTime = null;
+	
+	function testCycle() {			
+		
+		if( testState == 'new' ) {
+		
+		    testState = 'focus';
+			$( "#study-box" ).html( "<p class='focus'>•</p>" );
+			timeoutId = setTimeout( testCycle, 500 );
+			
+		} else if( testState == 'focus' ) {
+			
+			testState = 'testing'
+			
+			var colors = [ 'red', 'green', 'blue', 'yellow' ];			
+			currentColor = colors[ Math.floor( ( Math.random() * 4 ) ) ];
+			currentWord = colors[ Math.floor( ( Math.random() * 4 ) ) ];
+						
+			clearAlert();
+			$( "#study-box" ).html( "<p class='" + currentColor + "'>" + currentWord + "</p>" );
+			timeoutId = setTimeout( testCycle, 1500 );
+			startTime = new Date().getTime();		
+			
+		} else if ( testState == 'testing' ) {
+			
+			testState = 'new';			
+			setAlert( 'Took too long to respond.' );
+			timeoutId = setTimeout( testCycle, 100 );
+			
+		} else if ( testState = 'responded' ) {
+		
+			testState = 'new';
+			
+			var currentTime = new Date().getTime();
+			var responseTime = currentTime - startTime;
+			
+			if( responseTime < 250 ) {
+				setAlert( 'Answered too quickly.' );
+			} else if( keyColor == currentWord ) {
+				setAlert( 'Correct ' + responseTime + "ms" );
+			} else {
+				setAlert( 'Incorrect ' + responseTime + "ms" );
+			}
+			setTimeout( testCycle, 10 );
+			
+		}
+		
+		centerWord();
+		
+		return false;
+	}
+	
+	
+	function clearAlert() {
+		setAlert( "" );
+	}
+	
+	function setAlert( text ) {
+		$( "#alert-box" ).html( text );
+	}
+</script>
