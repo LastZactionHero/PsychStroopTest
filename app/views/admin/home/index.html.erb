@@ -1,3 +1,7 @@
 <h1>Study Users</h1>
 <p><%= pluralize( User.count, "user" ) %> registered for this study.</p>
 <%= link_to "View/Edit", admin_users_path, :class => "section-link" %>
+
+<h1>Trials</h1>
+<p><%= pluralize( Trial.count, "trial" ) %> recorded.</p>
+<%= link_to "View", admin_trials_path, :class => "section-link" %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  text_color: MyString
+  ink_color: MyString
+  condition: MyString
+  mode: MyString
+  answer_color: MyString
+  correct: false
+  response_time: 1
+  note: MyString
+
+two:
+  text_color: MyString
+  ink_color: MyString
+  condition: MyString
+  mode: MyString
+  answer_color: MyString
+  correct: false
+  response_time: 1
+  note: MyString

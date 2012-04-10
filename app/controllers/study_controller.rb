@@ -27,7 +27,8 @@ class StudyController < ApplicationController
   end
   
   def test
-    
+    @user = User.where( :id => session[:user_id] ).first    
+    redirect_to :action => :home unless @user    
   end
   
 end

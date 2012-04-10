@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409211234) do
+ActiveRecord::Schema.define(:version => 20120410192751) do
+
+  create_table "trials", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "text_color"
+    t.string   "ink_color"
+    t.string   "condition"
+    t.string   "mode"
+    t.string   "answer_color"
+    t.boolean  "correct"
+    t.integer  "response_time"
+    t.string   "note"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "id_hash"

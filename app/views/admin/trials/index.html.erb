@@ -1,0 +1,35 @@
+<h1>Trials</h1>
+<p><%= pluralize( @trials.count, "trial" ) %> recorded.</p>
+<%= link_to "Delete All", delete_all_admin_trials_path, :class => "section-link", :confirm => "Are you sure you would like to remove all data?" %>
+
+<hr/>
+
+<table cellspacing="10">
+	<tr>
+		<th>User ID</th>
+		<th>Mode</th>
+		<th>Condition</th>		
+		<th>Text Color</th>
+		<th>Ink Color</th>
+		<th>Answer Color</th>
+		<th>Correct</th>
+		<th>Response Time (ms)</th>
+		<th>Note</th>
+		<th>Timestamp</th>
+	</tr>
+		
+	<% @trials.each do |trial| %>
+		<tr>
+			<td><%= trial.user_id %></td>
+			<td><%= trial.mode %></td>
+			<td><%= trial.condition %></td>
+			<td><%= trial.text_color %></td>
+			<td><%= trial.ink_color %></td>
+			<td><%= trial.answer_color %></td>
+			<td><%= trial.correct %></td>
+			<td><%= trial.response_time %></td>
+			<td><%= trial.note %></td>
+			<td><%= trial.created_at %></td>		
+		</tr>	
+	<% end %>
+</table>

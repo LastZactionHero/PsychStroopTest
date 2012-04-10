@@ -1,5 +1,5 @@
 var currentMode = null;
-var currentTrial = 0;
+var currentTrial = -1;
 var currentWord = null;
 var testState = null;
 var keyColor = null;
@@ -7,11 +7,12 @@ var keyColor = null;
 var trials = null;
 var timeoutId = null;
 var startTime = null;
+var results = new Array();
 
 
 $( document ).ready( function() {
 	$( document ).keydown( function( event ){ keyPress( event ) } );					
-	changeMode();	
+	changeMode();			
 } );
 
 
@@ -21,7 +22,7 @@ function changeMode() {
 		
 		testState = 'new';
 		trials = generateTrials( currentMode );
-		currentTrial = 0;
+		currentTrial = -1;
 		
 		setPracticeMessage();
 		
@@ -30,11 +31,16 @@ function changeMode() {
 		
 		testState = 'new';
 		trials = generateTrials( currentMode );
-		currentTrial = 0;
+		currentTrial = -1;
 		
 		setRealMessage();
 		
 	} else if( currentMode == 'real' ) {
+		currentMode = 'uploading';
+				
+		setUploadingMessage();
+		uploadResults( results );
+	} else if( currentMode == 'uploading' ) {
 		currentMode = 'finished';
 		
 		setFinishedMessage();
@@ -97,8 +103,9 @@ function testCycle() {
 		
 		testState = 'testing'
 		
-		if( currentTrial < trials.length ) {
-			var trial = trials[currentTrial++];		
+		if( currentTrial < ( trials.length - 1 ) ) {
+			currentTrial++;
+			var trial = trials[currentTrial];		
 			currentWord = trial.inkColor;
 				
 			$( "#study-box" ).html( "<p class='" + trial.inkColor + "'>" + trial.textColor + "</p>" );
@@ -112,6 +119,10 @@ function testCycle() {
 		
 		testState = 'new';			
 		setAlert( 'Took too long to respond. Press Spacebar to start next trial.' );
+		trials[currentTrial].correct = false;
+		trials[currentTrial].note = "answered too slowly"
+		trials[currentTrial].responseTime = -1;
+		results.push( trials[currentTrial] );
 		
 	} else if ( testState = 'responded' ) {
 	
@@ -126,15 +137,30 @@ function testCycle() {
 		
 		var baseAlert = "";
 		
+		trials[currentTrial].answeredColor = keyColor;
+		trials[currentTrial].responseTime = responseTime;
+		
 		if( responseTime < 250 ) {
 			baseAlert = "Answered too quickly.";
+			trials[currentTrial].correct = false;
+			trials[currentTrial].note = "answered too quickly"
 		} else if( currentMode == 'practice' ) {
 			if( keyColor == currentWord ) {
-				baseAlert = "Correct.";				
+				baseAlert = "Correct.";	
+				trials[currentTrial].correct = true;
 			} else {
 				baseAlert = "Incorrect.";
+				trials[currentTrial].correct = false;
 			}
+		} else {
+			if( keyColor == currentWord ) {
+				trials[currentTrial].correct = true;	
+			} else {
+				trials[currentTrial].correct = false;
+			}			
 		}
+		
+		results.push( trials[currentTrial] );		
 		
 		setAlert( baseAlert + " " + spacebarAlert );
 	}

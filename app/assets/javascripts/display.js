@@ -21,6 +21,11 @@ function setFinishedMessage( text ) {
 	$( "#message-box-finished" ).show();
 }
 
+function setUploadingMessage( text ) {
+	hideMessages();
+	$( "#message-box-uploading" ).show();
+}
+
 function hideMessages() {
 	$( ".message-box" ).hide();
 }

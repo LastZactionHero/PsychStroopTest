@@ -8,6 +8,13 @@ Stroop::Application.routes.draw do
     match 'sign_out'  => "admin#sign_out"    
     
     resources :users
+    
+    resources :trials, :only => [ :index ] do
+      collection do
+        get 'delete_all'
+      end
+    end
+    
   end
   
   root :to => 'study#home'
@@ -20,6 +27,8 @@ Stroop::Application.routes.draw do
       get 'test'
     end
   end
+  
+  resources :trials, :only => [ :create ]
     
   
   # The priority is based upon order of creation:
