@@ -1,15 +1,55 @@
-$( document ).ready( function() {
+var currentMode = null;
+var currentTrial = 0;
+var currentWord = null;
+var testState = null;
+var keyColor = null;
 
+var trials = null;
+var timeoutId = null;
+var startTime = null;
+
+
+$( document ).ready( function() {
 	$( document ).keydown( function( event ){ keyPress( event ) } );					
-	initTest();		
-	testCycle();	
+	changeMode();	
 } );
 
 
-var keyColor = null;
+function changeMode() {
+	if( currentMode == null ) {
+		currentMode = 'practice';
+		
+		testState = 'new';
+		trials = generateTrials( currentMode );
+		currentTrial = 0;
+		
+		setPracticeMessage();
+		
+	} else if( currentMode == 'practice' ) {
+		currentMode = 'real';
+		
+		testState = 'new';
+		trials = generateTrials( currentMode );
+		currentTrial = 0;
+		
+		setRealMessage();
+		
+	} else if( currentMode == 'real' ) {
+		currentMode = 'finished';
+		
+		setFinishedMessage();
+	}
+
+	centerWord();	
+}
+
+
 function keyPress( event ) {
-	keyColor = null;
+	if( currentMode == 'finished' ) {
+		return;
+	}
 	
+	keyColor = null;	
 	var keyCode = event.which;
 	
 	if( testState == 'testing' ) {
@@ -41,39 +81,6 @@ function keyPress( event ) {
 			
 }
 
-function centerWord() {
-	var docHeight = $( document ).height();
-	var wordHeight = $( "#study-box" ).height();		
-	var wordTop = ( docHeight - wordHeight ) / 2
-	$( "#study-box" ).css( 'top', wordTop );
-	
-	var focusHeight = $( "#focus-box" ).height();
-	var focusTop = ( docHeight - focusHeight ) / 2 + 32;
-	$( "#focus-box" ).css( 'top', focusTop );
-	
-	var docWidth = $( document ).width();
-	var wordWidth = $( "#study-box" ).width();
-	var wordLeft = ( docWidth - wordWidth ) / 2;
-	$( "#study-box" ).css( 'left', wordLeft );
-	
-	var focusWidth = $( "#focus-box" ).width();
-	var focusLeft = ( docWidth - focusWidth ) / 2;
-	$( "#focus-box" ).css( 'left', focusLeft );
-}
-
-var testState = null;
-var trials = null;
-var currentTrial = 0;
-
-function initTest() {
-	testState = 'new';		
-	trials = generateTrials();
-	currentTrial = 0;
-}
-
-var timeoutId = null;
-var currentWord = null;
-var startTime = null;
 
 function testCycle() {			
 	
@@ -81,6 +88,7 @@ function testCycle() {
 	
 	    testState = 'focus';
 	    
+	    hideMessages();
 	    clearAlert();
 	    $( "#study-box" ).html( "<p></p>" );
 		timeoutId = setTimeout( testCycle, 500 );
@@ -97,7 +105,7 @@ function testCycle() {
 			timeoutId = setTimeout( testCycle, 1500 );
 			startTime = new Date().getTime();	
 		} else {
-			setAlert( "Test completed." );
+			changeMode();
 		}
 		
 	} else if ( testState == 'testing' ) {
@@ -114,25 +122,24 @@ function testCycle() {
 		
 		//alert( "keyColor: " + keyColor + " wordColor: " + currentWord );
 		
+		var spacebarAlert = "Press Spacebar to start the next trial.";
+		
+		var baseAlert = "";
+		
 		if( responseTime < 250 ) {
-			setAlert( 'Answered too quickly.' );
-		} else if( keyColor == currentWord ) {
-			setAlert( 'Correct ' + responseTime + "ms. Press Spacebar to start next trial." );
-		} else {
-			setAlert( 'Incorrect ' + responseTime + "ms. Press Spacebar to start next trial." );
-		}			
+			baseAlert = "Answered too quickly.";
+		} else if( currentMode == 'practice' ) {
+			if( keyColor == currentWord ) {
+				baseAlert = "Correct.";				
+			} else {
+				baseAlert = "Incorrect.";
+			}
+		}
+		
+		setAlert( baseAlert + " " + spacebarAlert );
 	}
 	
 	centerWord();
 	
 	return false;
-}
-
-
-function clearAlert() {
-	setAlert( "" );
-}
-
-function setAlert( text ) {
-	$( "#alert-box" ).html( text );
 }

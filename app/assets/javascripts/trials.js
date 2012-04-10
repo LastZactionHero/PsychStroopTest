@@ -3,19 +3,20 @@ function Trial() {
 	this.inkColor = null;
 	this.type = null;
 	this.sortVar = null;	
+	this.mode = null;
 }
 
 COLORS = [ "RED", "GREEN", "YELLOW", "BLUE" ]
 
-function generateTrials() {
+function generateTrials( mode ) {
 	var trials = generateIncongruentTrials();
-	trials = generateCongruentTrials().concat( generateIncongruentTrials() );	
+	trials = generateCongruentTrials( mode ).concat( generateIncongruentTrials( mode ) );		
 	trials = randomizeTrials( trials );
 	debugPrintTrials( trials );
 	return trials;
 }
 
-function generateCongruentTrials() {
+function generateCongruentTrials( mode ) {
 	var trials = new Array();
 	
 	for( var x = 0; x < 6; x++ ) {
@@ -24,14 +25,19 @@ function generateCongruentTrials() {
 			trial.textColor = COLORS[i];
 			trial.inkColor = COLORS[i];
 			trial.type = 'congruent';
+			trial.mode = mode;
 			trials.push( trial );	
 		}
+	}
+
+	if( mode == 'practice' ) {
+		trials = trials.slice( 0, 5 );
 	}
 	
 	return trials;
 }
 
-function generateIncongruentTrials() {
+function generateIncongruentTrials( mode ) {
 	var trials = new Array();
 	
 	for( var x = 0; x < 3; x++ ) {
@@ -42,10 +48,15 @@ function generateIncongruentTrials() {
 					trial.textColor = COLORS[textColor];
 					trial.inkColor = COLORS[inkColor];
 					trial.type = 'incongruent';
+					trial.mode = mode;
 					trials.push( trial );
 				}
 			}
 		}
+	}
+	
+	if( mode == 'practice' ) {
+		trials = trials.slice( 0, 5 );
 	}
 	
 	return trials;
@@ -64,6 +75,6 @@ function randomizeTrials( trials ) {
 function debugPrintTrials( trials ) {
     console.debug( "Trials: " + trials.length );
 	for( var i = 0; i < trials.length; i++ ) {
-		console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].type );
+		console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].sortVar );
 	}
 }
