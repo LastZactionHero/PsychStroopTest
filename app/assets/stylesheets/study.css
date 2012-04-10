@@ -44,32 +44,50 @@ body {
   font-size: 0.75em;
 }
 
+#focus-box {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  z-index: 0;
+  
+  font-size: 3em;
+  text-align: center;
+  color: white;      
+  clear: both;
+}
+
 #study-box {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  z-index: 1;
+  
+  font-size: 3em;
+  text-align: center;
+  clear: both;
+}
+
+#study-box .RED {
+  color: red;    
+}
+
+#study-box .BLUE {
+  color: blue;    
+}
+
+#study-box .GREEN {
+  color: green;    
+}
+
+#study-box .YELLOW {
+  color: yellow;    
+}
+
+#keyboard-colors {
   position: relative;
   margin-left: auto;
   margin-right: auto;
   width: 400px;
-  
-  font-size: 4em;
-  text-align: center;
-}
-
-#study-box .focus {
-  color: white;    
-}
-
-#study-box .red {
-  color: red;    
-}
-
-#study-box .blue {
-  color: blue;    
-}
-
-#study-box .green {
-  color: green;    
-}
-
-#study-box .yellow {
-  color: yellow;    
 }
