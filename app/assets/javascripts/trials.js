@@ -1,7 +1,8 @@
 function Trial() {
 	this.textColor = null;
 	this.inkColor = null;
-	this.sortVar = 0;
+	this.type = null;
+	this.sortVar = null;	
 }
 
 COLORS = [ "RED", "GREEN", "YELLOW", "BLUE" ]
@@ -22,6 +23,7 @@ function generateCongruentTrials() {
 			var trial = new Trial();
 			trial.textColor = COLORS[i];
 			trial.inkColor = COLORS[i];
+			trial.type = 'congruent';
 			trials.push( trial );	
 		}
 	}
@@ -39,6 +41,7 @@ function generateIncongruentTrials() {
 					var trial = new Trial();
 					trial.textColor = COLORS[textColor];
 					trial.inkColor = COLORS[inkColor];
+					trial.type = 'incongruent';
 					trials.push( trial );
 				}
 			}
@@ -61,6 +64,6 @@ function randomizeTrials( trials ) {
 function debugPrintTrials( trials ) {
     console.debug( "Trials: " + trials.length );
 	for( var i = 0; i < trials.length; i++ ) {
-		console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].sortVar );
+		console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].type );
 	}
 }
