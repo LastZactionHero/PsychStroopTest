@@ -23,6 +23,7 @@ Stroop::Application.routes.draw do
       get 'home'
       post 'sign_in'
       get 'instructions'
+      get 'fingers'
       get 'full_screen_warning'
       get 'test'
     end

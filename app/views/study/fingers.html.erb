@@ -1,0 +1,32 @@
+<div class='action-box'>
+
+	<p>Now place your hands on the keyboard in front of you such that:</p>
+	
+	<p>your LEFT MIDDLE FINGER is on the S key,</p>
+	
+	<p>your LEFT INDEX FINGER is on the F key,</p>
+	
+	<p>your RIGHT INDEX finger is on the J key,</p>
+	
+	<p>your RIGHT MIDDLE FINGER is on the L key.</p>
+	
+	<p>If the ink color is red, press the S key; for blue, press the F key; for green, press the J key, for
+	yellow, press the L key.</p>
+		
+	<p class='spacebar'>Press the space bar to continue.</p>
+</div>
+
+<script type="text/javascript">
+
+$( document ).ready( function() {
+	$( document ).keydown( function( event ){ keyPress( event ) } );								
+} );
+
+function keyPress( event ) {
+	var keyCode = event.which;
+	if( keyCode == 32 ) {
+		window.location = '<%= full_screen_warning_study_index_path %>';
+	}
+}
+
+</script>

@@ -1,16 +1,21 @@
 <div class='action-box'>
 	<h1 class='title'>Instructions</h1>
+	
 	<p>Welcome.</p>
 
-	<p>Start a trial by pressing the space bar. A fixation dot will appear in the middle of the window. Stare at it.
-	A short time later (less than a second) a word (RED, BLUE, GREEN, or YELLOW) will appear on the
-	screen, and the word will be printed in red, green, blue, or yellow ink.</p>
+	<p class='bold'>Your task in this experiment is to classify, as ACCURATELY and quickly as possible, the
+	ink color, regardless of the word name on the next several screens.</p>
 	
-	<p class='bold'>Your task is to classify, as quickly as possible, the ink color, regardless of the word name.</p>
+	<p>Start by pressing the space bar. A fixation dot will appear in the middle of the window. Stare
+	at it. A short time later (less than a second) a word (RED, BLUE, GREEN, or YELLOW) will
+	appear on the screen, and the word will be printed in red, green, blue, or yellow ink.</p>
 	
-	<p>If the ink color is red, press the <span class='italic'>S</span> key; for blue, press the <span class='italic'>F</span> key; for green, press the <span class='italic'>J</span> key, for yellow, press
-	the <span class='italic'>L</span> key.</p>
+	<p>Your task is to classify the ink color regardless of the word name. Please do so as accurately and
+	quickly as possible without making too many mistakes.</p.
 	
+	<p>If the ink color is red, press the S key; for blue, press the F key; for green, press the J key, for
+	yellow, press the L key.</p>
+		
 	<p class='spacebar'>Press the space bar to continue.</p>
 </div>
 
@@ -23,7 +28,7 @@ $( document ).ready( function() {
 function keyPress( event ) {
 	var keyCode = event.which;
 	if( keyCode == 32 ) {
-		window.location = '<%= full_screen_warning_study_index_path %>';
+		window.location = '<%= fingers_study_index_path %>';
 	}
 }
 

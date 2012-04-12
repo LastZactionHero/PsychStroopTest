@@ -22,6 +22,10 @@ class StudyController < ApplicationController
     
   end
   
+  def fingers
+    
+  end
+  
   def full_screen_warning
     
   end
