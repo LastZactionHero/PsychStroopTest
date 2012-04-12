@@ -24,7 +24,7 @@ function generateTrials( mode ) {
 function generateCongruentTrials( mode ) {
 	var trials = new Array();
 	
-	for( var x = 0; x < 6; x++ ) {
+	for( var x = 0; x < 9; x++ ) {
 		for( var i = 0; i < COLORS.length; i++ ) {
 			var trial = new Trial();
 			trial.textColor = COLORS[i];
