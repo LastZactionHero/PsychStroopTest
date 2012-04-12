@@ -56,7 +56,7 @@ function centerWord() {
 	$( "#focus-box" ).css( 'top', focusTop );
 
 	var alertHeight = $( "#alert-box" ).height();
-	var alertTop = ( docHeight - alertHeight ) / 2 + 28 + focusHeight / 2;
+	var alertTop = ( docHeight - alertHeight ) / 2 + 80;
 	$( "#alert-box" ).css( 'top', alertTop );
 		
 	var docWidth = $( document ).width();
