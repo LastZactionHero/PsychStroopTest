@@ -145,7 +145,7 @@ function testCycle() {
 		} else if( responseTime > 1500 ) {
 			baseAlert = "Too slow, respond faster.";
 			trials[currentTrial].correct = false;
-			trials[currentTrial].note = "answered too quickly"			
+			trials[currentTrial].note = "answered too slowly"			
 		} else if( currentMode == 'practice' ) {
 			if( keyColor == currentWord ) {
 				baseAlert = "CORRECT.";	
