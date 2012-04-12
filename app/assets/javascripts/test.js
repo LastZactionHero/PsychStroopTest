@@ -12,7 +12,7 @@ var results = new Array();
 
 $( document ).ready( function() {
 	$( document ).keydown( function( event ){ keyPress( event ) } );					
-	changeMode();			
+	changeMode();
 } );
 
 
@@ -62,15 +62,14 @@ function keyPress( event ) {
 		if( keyCode == 83 ) {
 			keyColor = 'RED';
 		} else if ( keyCode == 70 ) {
-			keyColor = 'GREEN';
-		} else if ( keyCode == 74 ) {
 			keyColor = 'BLUE';
+		} else if ( keyCode == 74 ) {
+			keyColor = 'GREEN';
 		} else if ( keyCode == 76 ) {
 			keyColor = 'YELLOW';
 		}
 	
 		if( keyColor != null ) {
-			clearTimeout( timeoutId );
 			testState = 'responded';
 			testCycle();	
 		} else {
@@ -109,20 +108,19 @@ function testCycle() {
 			currentWord = trial.inkColor;
 				
 			$( "#study-box" ).html( "<p class='" + trial.inkColor + "'>" + trial.textColor + "</p>" );
-			timeoutId = setTimeout( testCycle, 1500 );
 			startTime = new Date().getTime();	
 		} else {
 			changeMode();
 		}
 		
-	} else if ( testState == 'testing' ) {
+	/*} else if ( testState == 'testing' ) {
 		
 		testState = 'new';			
 		setAlert( 'Took too long to respond. Press Spacebar to start next trial.' );
 		trials[currentTrial].correct = false;
 		trials[currentTrial].note = "answered too slowly"
 		trials[currentTrial].responseTime = -1;
-		results.push( trials[currentTrial] );
+		results.push( trials[currentTrial] ); */
 		
 	} else if ( testState = 'responded' ) {
 	
@@ -133,7 +131,7 @@ function testCycle() {
 		
 		//alert( "keyColor: " + keyColor + " wordColor: " + currentWord );
 		
-		var spacebarAlert = "Press Spacebar to start the next trial.";
+		var spacebarAlert = "Press the space bar for the next trial.";
 		
 		var baseAlert = "";
 		
@@ -141,15 +139,19 @@ function testCycle() {
 		trials[currentTrial].responseTime = responseTime;
 		
 		if( responseTime < 250 ) {
-			baseAlert = "Answered too quickly.";
+			baseAlert = "Too early, wait for the stimulus.";
 			trials[currentTrial].correct = false;
 			trials[currentTrial].note = "answered too quickly"
+		} else if( responseTime > 1500 ) {
+			baseAlert = "Too slow, respond faster.";
+			trials[currentTrial].correct = false;
+			trials[currentTrial].note = "answered too quickly"			
 		} else if( currentMode == 'practice' ) {
 			if( keyColor == currentWord ) {
-				baseAlert = "Correct.";	
+				baseAlert = "CORRECT.";	
 				trials[currentTrial].correct = true;
 			} else {
-				baseAlert = "Incorrect.";
+				baseAlert = "INCORRECT. THE CORRECT INK COLOR IS " + currentWord + ".";
 				trials[currentTrial].correct = false;
 			}
 		} else {

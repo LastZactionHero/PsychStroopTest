@@ -22,6 +22,18 @@ body {
   margin-top: 4px 0px 10px 0px;
 }
 
+.action-box .bold {
+  font-weight: bold;
+}
+
+.action-box .italic {
+  font-style: italic;
+}
+
+.action-box .title {
+  text-align: center;
+}
+
 .action-box form {
   margin: 10px 0px 20px 0px;
 }
@@ -39,9 +51,12 @@ body {
   position: absolute;
   top: 15px;
   left: 15px;
+  width: 600px;
+  text-align: center;
   
   color: white;
-  font-size: 0.875em;
+  font-size: 1em;
+  clear: both;
 }
 
 #focus-box {
@@ -51,7 +66,7 @@ body {
   width: 400px;
   z-index: 0;
   
-  font-size: 3em;
+  font-size: 1.5em;
   text-align: center;
   color: white;      
   clear: both;
@@ -64,7 +79,8 @@ body {
   width: 400px;
   z-index: 1;
   
-  font-size: 3em;
+  font-size: 2.25em;
+  font-weight: bold;
   text-align: center;
   clear: both;
 }
@@ -85,11 +101,14 @@ body {
   color: yellow;    
 }
 
-#keyboard-colors {
+#key-colors {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: 400px;
+  width: 100%;
+  top: 100px;
+  text-align: center;
+  font-size: 1.125em;
 }
 
 .message-box {
@@ -98,13 +117,23 @@ body {
   margin-right: auto;
   z-index: 2;
   width: 500px;
-  top: 200px;
+  top: 100px;
   
   background-color: #CCCCCC;
   border-radius: 10px;
   padding: 10px;
   min-height: 200px;  
-  color: black;
-  
-  opacity: 0.75;
+  color: black;  
+}
+
+.message-box .bold {
+  font-weight: bold;
+}
+
+.message-box .italic {
+  font-style: italic;
+}
+
+.message-box .title {
+  text-align: center;
 }

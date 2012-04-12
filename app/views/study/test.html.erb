@@ -1,8 +1,5 @@
-<div id='alert-box'>
-</div>
-
-<div id='keyboard-colors'>
-	<%= image_tag "keyboard-colors.png", :width => 400 %>
+<div id='key-colors'>
+	Press the s key for red, the f key for blue, the j key for green, l key for yellow
 </div>
 
 <div id='study-box'>
@@ -11,27 +8,40 @@
 <div id='focus-box'>
 	<p>•</p>
 </div>
+
+<div id='alert-box'>
+</div>
+
+
 <div id='message-box-practice' class='message-box'>
-	<h1>Starting Practice Test</h1>
-	<p>Practice test instructions</p>
-	<p>Press the Spacebar to begin.</p>
+	<h1 class='title'>PRACTICE TASK</h1>	
+	<p>It may take a bit of practice to remember which key corresponds to which ink color. On the next few
+	screens, you will have the opportunity to practice the task. After pressing a key to identify the ink color,
+	you will receive feedback on whether you were correct.</p>	
+	<p>If you find you are making lots of mistakes, you should slow down or make certain you understood which
+	key goes with which ink color.</p>	
+	<p><span class='bold'>Remember, your task is to identify the ink color and ignore the word name.</span> Press the <span class='italic'>s</span> key for red,
+	the <span class='italic'>f</span> key for blue, the <span class='italic'>j</span> key for green, <span class='italic'>l</span> key for yellow.</p>	
+	<p class='bold'>Try to be as FAST and ACCURATE as you can.</p>	
+	<p>Press the space bar to start the first trial of the practice task.</p>
 </div>
 
 <div id='message-box-real' class='message-box'>
-	<h1>Starting Test</h1>
-	<p>Test instructions</p>
-	<p>Press the Spacebar to begin.</p>
+	<p>You are now ready to begin the online task!</p>
+	<p class='bold'>Again, your task is to classify, as quickly as possible, the ink color, regardless of the word name. Try to be as fast and accurate as you can.</p> 
+	<p>Press the <span class='italic'>s</span> key for red, the <span class='italic'>f</span> key for blue, the <span class='italic'>j</span> key for green, <span class='italic'>l</span> key for yellow.</p>
+	<p>Press the space bar to begin.</p>
 </div>
 
 <div id='message-box-finished' class='message-box'>
-	<h1>Test Complete</h1>
-	<p>Instructions on taking the next test.</p>
+	<p class='bold'>Thank you for completing the online task. Your contribution will greatly help us in understanding information processing in the human mind. Please remember to finish the task at the next allotted time.</p>
 </div>
 
 <div id='message-box-uploading' class='message-box'>
-	<h1>Test Complete</h1>
 	<p>Please wait while your results are submitted...</p>
 </div>
+
+
 
 <script type="text/javascript">
 	var user_id = <%= @user.id %>; 

@@ -1,8 +1,30 @@
 <div class='action-box'>
-	<h1>Instructions</h1>
-	<p>Introduction text on the study. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget turpis velit, in varius arcu. Integer vitae eros et felis varius mattis et rhoncus risus. Phasellus venenatis hendrerit nulla nec iaculis. Phasellus nec nulla arcu, eu bibendum mi. Quisque erat elit, egestas ut vehicula sit amet, vehicula sollicitudin elit. Nulla facilisi. Nam ultrices, ipsum in sodales ornare, nisi erat fringilla lacus, ut interdum elit erat eget sapien.</p>
+	<h1 class='title'>Instructions</h1>
+	<p>Welcome.</p>
+
+	<p>Start a trial by pressing the space bar. A fixation dot will appear in the middle of the window. Stare at it.
+	A short time later (less than a second) a word (RED, GREEN, BLUE, or YELLOW) will appear on the
+	screen, and the word will be printed in red, green, blue, or yellow ink.</p>
 	
-	<p class='next-link'>
-		<%= link_to "Continue", full_screen_warning_study_index_path %>
-	</p>
+	<p class='bold'>Your task is to classify, as quickly as possible, the ink color, regardless of the word name.</p>
+	
+	<p>If the ink color is red, press the <span class='italic'>s</span> key; for blue, press the <span class='italic'>f</span> key; for green, press the <span class='italic'>j</span> key, for yellow, press
+	the <span class='italic'>l</span> key.</p>
+	
+	<p>Press the space bar to continue.</p>
 </div>
+
+<script type="text/javascript">
+
+$( document ).ready( function() {
+	$( document ).keydown( function( event ){ keyPress( event ) } );								
+} );
+
+function keyPress( event ) {
+	var keyCode = event.which;
+	if( keyCode == 32 ) {
+		window.location = '<%= test_study_index_path %>';
+	}
+}
+
+</script>
