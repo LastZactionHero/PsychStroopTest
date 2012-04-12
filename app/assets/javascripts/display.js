@@ -35,14 +35,14 @@ function hideMessages() {
 	$( "#focus-box" ).show();
 	$( "#study-box" ).show();
 	$( "#alert-box" ).show();
-	$( "#key-colors" ).show();
+	//$( "#key-colors" ).show();
 }
 
 function hideTest() {
 	$( "#focus-box" ).hide();
 	$( "#study-box" ).hide();
 	$( "#alert-box" ).hide();
-	$( "#key-colors" ).hide();
+	//$( "#key-colors" ).hide();
 }
 
 function centerWord() {
