@@ -36,7 +36,7 @@ function generateCongruentTrials( mode ) {
 	}
 
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 5 );
+		trials = trials.slice( 0, 3 );
 	}
 	
 	return trials;
@@ -61,7 +61,7 @@ function generateIncongruentTrials( mode ) {
 	}
 	
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 5 );
+		trials = trials.slice( 0, 3 );
 	}
 	
 	return trials;
