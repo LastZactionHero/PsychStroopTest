@@ -168,7 +168,7 @@ function testCycle() {
 		
 	} else if ( testState == 'invalid' ) {
 		testState = 'new'			
-		setAlert( "Invalid Key" );
+		setAlert( "Invalid Key<br/>Press the space bar for the next trial." );
 		
 		// Move current trial to the end of the list
 		bad_trial = trials[currentTrial];
