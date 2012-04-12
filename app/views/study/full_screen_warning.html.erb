@@ -1,14 +1,52 @@
 <div class='action-box'>
-	<h1>Please Put Browser in Full Screen Mode</h1>
-	<p>Some details on putting your browser in full screen mode.</p>
+	<h1 class='title'>Please Put Your Browser in Full Screen Mode</h1>
+	<p>In order to run this test without any distractions, please place your browser in full screen mode.</p>
 	
-	<ul>
-		<li>Instructions on putting browser in full screen mode.</li>
-		<li>Press the 'F11' key</li>
-		<li>etc</li>	
-	</ul>
+	<p><span class='bold'>Google Chrome:</span> Press <span class='italic'>F11</span>, or click <span class='italic'>'Wrench Icon'</span> -> <span class='italic'>Zoom</span> -> <span class='italic'>Full Screen</span></p>
 	
-	<p class='next-link'>
-		<%= link_to "Start Test", test_study_index_path %>
-	</p>
+	<p><span class='bold'>Firefox (Windows):</span>  Press <span class='italic'>F11</span>, or click <span class='italic'>View</span> -> <span class='italic'>Full Screen</span></p>		
+	
+	<p><span class='bold'>Internet Explorer 8:</span> Press <span class='italic'>F11</span>, or click <span class='italic'>Tools</span> -> <span class='italic'>Full Screen</span></p>
+	
+	<p><span class='bold'>Internet Explorer 7:</span> Press <span class='italic'>Alt-Enter</span>, or click <span class='italic'>View</span> -> <span class='italic'>Full Screen</span></p>
+	
+	<hr />
+	
+	<p><span class='bold'>Apple Safari:</span> This browser does not support Full Screen mode. Google Chrome is recommended for this test.</p>
+	
+	<p><span class='bold'>Firefox (OS X):</span> This browser does not support Full Screen mode. Google Chrome is recommended for this test.</p>
+	
+	<br />
+	<p>Press the space bar to continue.</p>
 </div>
+
+<script type="text/javascript">
+
+var docWidth = 0;
+var docHeight = 0;
+
+$( document ).ready( function() {
+	$( document ).keydown( function( event ){ keyPress( event ) } );
+
+	docWidth = $( window ).width();
+	docHeight = $( window ).height();	
+	$( window ).resize( function(){ handleResize() } );					
+} );
+
+function keyPress( event ) {
+	var keyCode = event.which;
+	if( keyCode == 32 ) {
+		window.location = '<%= test_study_index_path %>';
+	}
+}
+
+function handleResize() {
+	var newWidth = $( window ).width();
+	var newHeight = $( window ).height();
+	
+	if( newWidth > docWidth || newHeight > docHeight ) {
+		window.location = '<%= test_study_index_path %>';
+	}
+}
+
+</script>
