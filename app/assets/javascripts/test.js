@@ -73,7 +73,8 @@ function keyPress( event ) {
 			testState = 'responded';
 			testCycle();	
 		} else {
-			setAlert( "Invalid Key" );
+			testState = 'invalid';
+			testCycle();			
 		}
 				
 	} else if( testState == 'new' ) {
@@ -122,49 +123,58 @@ function testCycle() {
 		trials[currentTrial].responseTime = -1;
 		results.push( trials[currentTrial] ); */
 		
-	} else if ( testState = 'responded' ) {
+	} else if ( testState == 'responded' ) {
 	
 		testState = 'new';
 		
 		var currentTime = new Date().getTime();
 		var responseTime = currentTime - startTime;
 		
-		//alert( "keyColor: " + keyColor + " wordColor: " + currentWord );
+		//alert( "keyColor: " + keyColor + " wordColor: " + currentWord );		
 		
-		var spacebarAlert = "Press the space bar for the next trial.";
-		
-		var baseAlert = "";
 		
 		trials[currentTrial].answeredColor = keyColor;
 		trials[currentTrial].responseTime = responseTime;
 		
-		if( responseTime < 250 ) {
-			baseAlert = "Too early, wait for the stimulus.";
+		var line1 = "";
+		var line2 = "";
+		var line3 = "Press the space bar for the next trial.";
+				
+		
+		if( keyColor == currentWord ) {
+			line1 = "CORRECT!";
+			trials[currentTrial].correct = true;	
+		} else {
+			line1 = "INCORRECT!";
+			if( currentMode == 'practice' ) {
+				line1 += " THE CORRECT INK COLOR IS " + currentWord + ".";
+			}
+			trials[currentTrial].correct = false;
+		}			
+		
+		if( responseTime < 200 ) {
+			line2 = "Too early, wait for the stimulus.";
 			trials[currentTrial].correct = false;
 			trials[currentTrial].note = "answered too quickly"
-		} else if( responseTime > 1500 ) {
-			baseAlert = "Too slow, respond faster.";
+		} else if( responseTime > 1800 ) {
+			line2 = "Too slow, respond faster.";
 			trials[currentTrial].correct = false;
-			trials[currentTrial].note = "answered too slowly"			
-		} else if( currentMode == 'practice' ) {
-			if( keyColor == currentWord ) {
-				baseAlert = "CORRECT.";	
-				trials[currentTrial].correct = true;
-			} else {
-				baseAlert = "INCORRECT. THE CORRECT INK COLOR IS " + currentWord + ".";
-				trials[currentTrial].correct = false;
-			}
-		} else {
-			if( keyColor == currentWord ) {
-				trials[currentTrial].correct = true;	
-			} else {
-				trials[currentTrial].correct = false;
-			}			
+			trials[currentTrial].note = "answered too slowly"	
 		}
 		
 		results.push( trials[currentTrial] );		
 		
-		setAlert( baseAlert + " " + spacebarAlert );
+		setAlert( line1 + "<br />" + line2 + "<br />" + line3 );
+		
+	} else if ( testState == 'invalid' ) {
+		testState = 'new'			
+		setAlert( "Invalid Key" );
+		
+		// Move current trial to the end of the list
+		bad_trial = trials[currentTrial];
+		trials.splice( currentTrial, 1 );
+		trials.push( bad_trial );
+		currentTrial -= 1;		
 	}
 	
 	centerWord();

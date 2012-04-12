@@ -24,7 +24,9 @@ function generateTrials( mode ) {
 function generateCongruentTrials( mode ) {
 	var trials = new Array();
 	
-	for( var x = 0; x < 9; x++ ) {
+	var iterations = ( mode == 'practice' ) ? 1 : 6;
+	
+	for( var x = 0; x < 6; x++ ) {
 		for( var i = 0; i < COLORS.length; i++ ) {
 			var trial = new Trial();
 			trial.textColor = COLORS[i];
@@ -36,7 +38,7 @@ function generateCongruentTrials( mode ) {
 	}
 
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 3 );
+		trials = trials.slice( 0, 4 );
 	}
 	
 	return trials;
@@ -45,7 +47,7 @@ function generateCongruentTrials( mode ) {
 function generateIncongruentTrials( mode ) {
 	var trials = new Array();
 	
-	for( var x = 0; x < 3; x++ ) {
+	for( var x = 0; x < 2; x++ ) {
 		for( var textColor = 0; textColor < COLORS.length; textColor++ ) {
 			for( var inkColor = 0; inkColor < COLORS.length; inkColor++ ) {
 				if( textColor != inkColor ) {
@@ -61,7 +63,7 @@ function generateIncongruentTrials( mode ) {
 	}
 	
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 3 );
+		trials = trials.slice( 0, 2 );
 	}
 	
 	return trials;

@@ -137,3 +137,9 @@ body {
 .message-box .title {
   text-align: center;
 }
+
+.spacebar {
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+}
