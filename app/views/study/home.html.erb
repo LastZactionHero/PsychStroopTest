@@ -1,12 +1,11 @@
 <div class='action-box'>
-<h1>Stoop Test</h1>
+<h1>ONLINE TASK</h1>
 
 <%= form_tag( sign_in_study_index_path, :method => :post ) %>
-	<table>
-		<tr><td>Login ID:</td><td><%= text_field_tag( :login_id ) %></td></tr>
-		<% if @error %>
-			<tr><td></td><td><%= @error %></td></tr>
-		<% end %>
-		<tr><td></td><td><%= submit_tag( "Sign In" ) %></td></tr>
-	</table>
+	<p>Log in with your unique User ID</p>
+	<p><%= text_field_tag( :login_id ) %></p>
+	<% if @error %>
+		<p><%= @error %></p>
+	<% end %>
+	<p><%= submit_tag( "Sign In" ) %></p>
 </div>
