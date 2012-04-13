@@ -105,10 +105,10 @@ function randomizeTrials( trials ) {
 }
 
 function debugPrintTrials( trials ) {
-    console.debug( "Trials: " + trials.length );
-	for( var i = 0; i < trials.length; i++ ) {
-		console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].sortVar );
-	}
+    //console.debug( "Trials: " + trials.length );
+	//for( var i = 0; i < trials.length; i++ ) {
+	//	console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].sortVar );
+	//}
 }
 
 function uploadResults( results ) {
