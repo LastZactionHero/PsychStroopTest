@@ -1,3 +1,10 @@
+<% content_for :head do %>
+	<script type="text/javascript">
+		var user_id = <%= @user.id %>;
+		var novel_admin = <%= @novel_administration %>; 
+	</script>
+<% end %>
+
 <div id='key-colors'>
     <p>Identify the color of the ink and ignore the name of the word.</p>
 	<p>Press the S key for red, the F key for blue, the J key for green, L key for yellow</p>
@@ -58,10 +65,3 @@
 <div id='message-box-uploading' class='message-box'>
 	<p>Please wait while your results are submitted. This may take several seconds...</p>
 </div>
-
-
-
-<script type="text/javascript">
-	var user_id = <%= @user.id %>;
-	var novel_admin = <%= @novel_administration %>; 
-</script>
