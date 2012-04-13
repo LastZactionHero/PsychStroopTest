@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413034931) do
+ActiveRecord::Schema.define(:version => 20120413154159) do
 
   create_table "test_meta", :force => true do |t|
     t.boolean "novel_administration"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(:version => 20120413034931) do
     t.integer  "trial_num"
     t.string   "combination"
   end
+
+  add_index "trials", ["session", "mode", "combination", "trial_num"], :name => "index_trials_on_session_and_mode_and_combination_and_trial_num"
+  add_index "trials", ["session"], :name => "index_trials_on_session"
+  add_index "trials", ["user_id", "created_at"], :name => "index_trials_on_user_id_and_created_at"
+  add_index "trials", ["user_id"], :name => "index_trials_on_user_id"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at", :null => false
