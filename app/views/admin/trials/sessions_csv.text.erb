@@ -1,0 +1,7 @@
+<%= @user.login_id %>
+<%= @trials.first.timestamp %>
+
+Trial, Mode, Condition, Text Color, Ink Color, Answer Color, Correct, Response Time, Average Response Time, Note, Timestamp
+<% @trials.each do |trial| %>
+<%= trial.trial_num %>, <%= trial.mode %>, <%= trial.combination %>, <%= trial.text_color %>, <%= trial.ink_color %>, <%= trial.answer_color %>, <%= trial.correct %>, <%= trial.response_time %>, <%= trial.mode == 'practice' ? '' : trial.combination == 'congruent' ? @congruent_avg : @incongruent_avg %>, <%= trial.note %>, <%= trial.created_at %>			
+<% end %>

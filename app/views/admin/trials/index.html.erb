@@ -6,30 +6,16 @@
 
 <table cellspacing="10">
 	<tr>
-		<th>User ID</th>
-		<th>Mode</th>
-		<th>Condition</th>		
-		<th>Text Color</th>
-		<th>Ink Color</th>
-		<th>Answer Color</th>
-		<th>Correct</th>
-		<th>Response Time (ms)</th>
-		<th>Note</th>
-		<th>Timestamp</th>
+		<th>User Login ID</th>
+		<th>Name</th>		
+		<th></th>
 	</tr>
-		
-	<% @trials.each do |trial| %>
+	
+	<% User.all.each do |user| %>
 		<tr>
-			<td><%= trial.user_id %></td>
-			<td><%= trial.mode %></td>
-			<td><%= trial.condition %></td>
-			<td><%= trial.text_color %></td>
-			<td><%= trial.ink_color %></td>
-			<td><%= trial.answer_color %></td>
-			<td><%= trial.correct %></td>
-			<td><%= trial.response_time %></td>
-			<td><%= trial.note %></td>
-			<td><%= trial.created_at %></td>		
-		</tr>	
+			<td><%= user.login_id %></td>
+			<td><%= user.full_name %></td>
+			<td><%= link_to "View Sessions", user_admin_trials_path( :user_id => user.id ) %></td>
+		</tr>
 	<% end %>
 </table>

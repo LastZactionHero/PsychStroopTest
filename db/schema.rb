@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410192751) do
+ActiveRecord::Schema.define(:version => 20120413034931) do
+
+  create_table "test_meta", :force => true do |t|
+    t.boolean "novel_administration"
+  end
 
   create_table "trials", :force => true do |t|
     t.integer  "user_id"
@@ -25,12 +29,17 @@ ActiveRecord::Schema.define(:version => 20120410192751) do
     t.string   "note"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "session"
+    t.integer  "trial_num"
+    t.string   "combination"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "id_hash"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "login_id"
   end
 
 end

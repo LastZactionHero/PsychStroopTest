@@ -2,21 +2,25 @@ class TrialsController < ApplicationController
   
   def create
     user_id = params["user_id"].to_i
-      
+    
+    session = Trial.last_session + 1
+    
     params["results"].keys.each do |key|
             
       result = params["results"][key]
         
-      trial = Trial.new
+      trial = Trial.new      
       trial.user_id = user_id
+      trial.trial_num = result["trial_num"]
       trial.text_color = result["textColor"]
       trial.ink_color = result["inkColor"]
-      trial.condition = result["type"]
+      trial.combination = result["type"]
       trial.mode = result["mode"]
       trial.answer_color = result["answeredColor"]
       trial.correct = result["correct"]
       trial.response_time = result["responseTime"].to_i
       trial.note = result["note"]
+      trial.session = session
       trial.save      
     end
         

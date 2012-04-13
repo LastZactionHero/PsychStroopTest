@@ -5,8 +5,7 @@ class StudyController < ApplicationController
   end
   
   def sign_in
-    id_hash = Digest::SHA1.hexdigest params[:email]
-    user = User.where( :id_hash => id_hash ).first
+    user = User.where( :login_id => params[:login_id] ).first
     
     if user
       session[:user_id] = user.id
@@ -31,6 +30,7 @@ class StudyController < ApplicationController
   end
   
   def test
+    @novel_administration = TestMeta.novel_administration?
     @user = User.where( :id => session[:user_id] ).first    
     redirect_to :action => :home unless @user    
   end

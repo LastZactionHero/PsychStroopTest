@@ -132,7 +132,7 @@ function testCycle() {
 		
 		//alert( "keyColor: " + keyColor + " wordColor: " + currentWord );		
 		
-		
+		trials[currentTrial].trial_num = currentTrial;
 		trials[currentTrial].answeredColor = keyColor;
 		trials[currentTrial].responseTime = responseTime;
 		

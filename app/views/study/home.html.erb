@@ -3,7 +3,7 @@
 
 <%= form_tag( sign_in_study_index_path, :method => :post ) %>
 	<table>
-		<tr><td>Email:</td><td><%= text_field_tag( :email ) %></td></tr>
+		<tr><td>Login ID:</td><td><%= text_field_tag( :login_id ) %></td></tr>
 		<% if @error %>
 			<tr><td></td><td><%= @error %></td></tr>
 		<% end %>

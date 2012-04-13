@@ -1,0 +1,42 @@
+<h1>User Test Session</h1>
+
+<table>
+	<tr><td>User Login ID:</td><td><%= @user.login_id %></td></tr>
+	<tr><td>Name:</td><td><%= @user.full_name %></td></tr>
+</table>
+
+<h1>Test Sessions</h1>
+<%= @trials.first.timestamp %>
+<br/><br/>
+
+<table cellspacing="10">
+	<tr>
+		<th>Trial #</th>
+		<th>Mode</th>
+		<th>Condition</th>		
+		<th>Text Color</th>
+		<th>Ink Color</th>
+		<th>Answer Color</th>
+		<th>Correct</th>
+		<th>Response Time (ms)</th>
+		<th>Average Response Time (ms)</th>
+		<th>Note</th>		
+		<th>Timestamp</th>
+	</tr>
+		
+	<% @trials.each do |trial| %>
+		<tr>
+			<td><%= trial.trial_num %></td>
+			<td><%= trial.mode %></td>
+			<td><%= trial.combination %></td>
+			<td><%= trial.text_color %></td>
+			<td><%= trial.ink_color %></td>
+			<td><%= trial.answer_color %></td>
+			<td><%= trial.correct %></td>
+			<td><%= trial.response_time %></td>
+			<td><%= trial.mode == 'practice' ? '' : trial.combination == 'congruent' ? @congruent_avg : @incongruent_avg %></td>
+			<td><%= trial.note %></td>
+			<td><%= trial.created_at %></td>		
+		</tr>	
+	<% end %>
+</table>

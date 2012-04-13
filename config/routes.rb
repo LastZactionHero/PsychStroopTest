@@ -3,6 +3,12 @@ Stroop::Application.routes.draw do
   namespace :admin do
     root :to => "home#index"
         
+    resources :home, :only => [] do
+      collection do
+        get 'toggle_novel_administration'
+      end
+    end
+    
     match 'sign_in' => "admin#sign_in"
     match 'complete_sign_in' => "admin#complete_sign_in"
     match 'sign_out'  => "admin#sign_out"    
@@ -12,6 +18,9 @@ Stroop::Application.routes.draw do
     resources :trials, :only => [ :index ] do
       collection do
         get 'delete_all'
+        get 'user'
+        get 'sessions'
+        get 'sessions_csv'
       end
     end
     

@@ -9,6 +9,7 @@ function Trial() {
 	this.correct = null;
 	this.responseTime = null;
 	this.note = null;
+	this.trial_num = null;
 }
 
 COLORS = [ "RED", "GREEN", "YELLOW", "BLUE" ]
@@ -24,9 +25,18 @@ function generateTrials( mode ) {
 function generateCongruentTrials( mode ) {
 	var trials = new Array();
 	
-	var iterations = ( mode == 'practice' ) ? 1 : 6;
+	var iteration = 0;
+	if( novel_admin ) {
+		iterations = 15;
+	} else {
+		if( mode == 'practice' ) {
+			iterations = 1;
+		} else {
+			iterations = 6;
+		}
+	}	
 	
-	for( var x = 0; x < 6; x++ ) {
+	for( var x = 0; x < iterations; x++ ) {
 		for( var i = 0; i < COLORS.length; i++ ) {
 			var trial = new Trial();
 			trial.textColor = COLORS[i];
@@ -36,9 +46,13 @@ function generateCongruentTrials( mode ) {
 			trials.push( trial );	
 		}
 	}
-
+	
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 4 );
+		if( novel_admin ) {
+			trials = trials.slice( 0, 10 );
+		} else {
+			trials = trials.slice( 0, 4 );
+		}		
 	}
 	
 	return trials;
@@ -47,7 +61,14 @@ function generateCongruentTrials( mode ) {
 function generateIncongruentTrials( mode ) {
 	var trials = new Array();
 	
-	for( var x = 0; x < 2; x++ ) {
+	var iterations = 0
+	if( novel_admin ) {
+		iterations = 5;
+	} else {
+		iterations = 2;
+	}
+	
+	for( var x = 0; x < iterations; x++ ) {
 		for( var textColor = 0; textColor < COLORS.length; textColor++ ) {
 			for( var inkColor = 0; inkColor < COLORS.length; inkColor++ ) {
 				if( textColor != inkColor ) {
@@ -63,7 +84,11 @@ function generateIncongruentTrials( mode ) {
 	}
 	
 	if( mode == 'practice' ) {
-		trials = trials.slice( 0, 2 );
+		if( novel_admin ) {
+			trials = trials.slice( 0, 10 );
+		} else {
+			trials = trials.slice( 0, 2 );
+		}		
 	}
 	
 	return trials;

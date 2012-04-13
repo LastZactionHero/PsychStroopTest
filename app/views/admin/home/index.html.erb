@@ -5,3 +5,6 @@
 <h1>Trials</h1>
 <p><%= pluralize( Trial.count, "trial" ) %> recorded.</p>
 <%= link_to "View", admin_trials_path, :class => "section-link" %>
+
+<h1>Novel Administration</h1>
+<%= TestMeta.novel_administration? ? "On" : "Off" %> <%= link_to "Toggle", toggle_novel_administration_admin_home_index_path %>
