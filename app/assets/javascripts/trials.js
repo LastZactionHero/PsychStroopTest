@@ -18,6 +18,7 @@ function generateTrials( mode ) {
 	var trials = generateIncongruentTrials();
 	trials = generateCongruentTrials( mode ).concat( generateIncongruentTrials( mode ) );		
 	trials = randomizeTrials( trials );
+	trials = separateTrials( trials );
 	debugPrintTrials( trials );
 	return trials;
 }
@@ -104,10 +105,10 @@ function randomizeTrials( trials ) {
 	return trials.sort( function( a, b ) { return ( a.sortVar - b.sortVar ); } );
 }
 
-function debugPrintTrials( trials ) {
+function debugPrintTrials( trials ) {	
     //console.debug( "Trials: " + trials.length );
 	//for( var i = 0; i < trials.length; i++ ) {
-	//	console.debug( trials[i].inkColor + " " + trials[i].textColor + " " + trials[i].sortVar );
+	//	console.debug( i + ": Condition: " + trials[i].type + " Ink: " + trials[i].inkColor + " Text Color: " + trials[i].textColor + " " + trials[i].sortVar );
 	//}
 }
 
@@ -120,3 +121,46 @@ function uploadResults( results ) {
 		  success: function( data ){ changeMode(); },
 	});
 }
+
+function separateTrials( trials ) {
+	
+	for( var pass = 0; pass < 10; pass++ ) {
+		//console.debug( "Separation Pass " + pass );
+		var reshuffle = false; 
+		
+		for( var i = 1; i < ( trials.length - 1 ); i++ ) {
+			if( trials[i].inkColor == trials[i+1].inkColor ) {
+				//console.debug( "Trial " + i + " and " + ( i + 1 ) + " have the same ink color" );
+				reshuffle = true;
+				
+				// Find a new spot for trial[i]
+				for( var j = 1; j < ( trials.length - 1 ); j++ ) {
+					var p = (j + i + pass) % ( trials.length - 1 ) + 1;
+					
+					if( trials[p-1].inkColor != trials[i].inkColor && trials[p+1] != trials[i].inkColor &&
+					    trials[i-1].inkColor != trials[p].inkColor && trials[i-1] != trials[p].inkColor &&
+					    i != p ) {
+						var tempTrial = new Trial();
+						tempTrial = trials[i];
+						trials[i] = trials[p];
+						trials[p] = tempTrial;			
+						//console.debug( "Found a good spot at " + p );
+						break;
+					}
+				}
+			}		
+		}
+		
+		if( reshuffle == false ) {
+			break;
+		}
+	}
+	
+	return trials;
+}
+
+
+
+
+
+
