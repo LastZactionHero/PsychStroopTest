@@ -17,4 +17,9 @@ class Trial < ActiveRecord::Base
     Trial.timestamp_by_session( self.session )  
   end
   
+  def timestamp
+    zone = ActiveSupport::TimeZone.new( "Eastern Time (US & Canada)" )    
+    time = self.created_at.in_time_zone( zone )
+  end
+  
 end

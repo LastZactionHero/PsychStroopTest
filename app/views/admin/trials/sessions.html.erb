@@ -36,7 +36,7 @@
 			<td><%= trial.response_time %></td>
 			<td><%= trial.mode == 'practice' ? '' : trial.combination == 'congruent' ? @congruent_avg : @incongruent_avg %></td>
 			<td><%= trial.note %></td>
-			<td><%= trial.created_at %></td>		
+			<td><%= trial.timestamp %></td>		
 		</tr>	
 	<% end %>
 </table>
