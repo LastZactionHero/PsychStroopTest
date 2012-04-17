@@ -8,6 +8,7 @@
 		<th>User Login ID</th>
 		<th>Name</th>		
 		<th></th>
+		<th></th>
 	</tr>
 	
 	<% User.all.each do |user| %>
@@ -15,6 +16,7 @@
 			<td><%= user.login_id %></td>
 			<td><%= user.full_name %></td>
 			<td><%= link_to "View Sessions", user_admin_trials_path( :user_id => user.id ) %></td>
+			<td><%= link_to "User Averages", user_total_avg_admin_trials_path( :user_id => user.id ) %></td>
 		</tr>
 	<% end %>
 </table>

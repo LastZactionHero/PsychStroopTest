@@ -1,0 +1,14 @@
+<h1>User Averages</h1>
+
+<table>
+	<tr><td>User Login ID:</td><td><%= @user.login_id %></td></tr>
+	<tr><td>Name:</td><td><%= @user.full_name %></td></tr>
+</table><br/><br/>
+
+<table>
+	<tr><td>Congruent Average Time:</td><td><%= @congruent_avg %>ms</td></tr>
+	<tr><td>Total Correct Congruent Trials:</td><td><%= @congruent_count %></td></tr>
+	<tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+	<tr><td>Incongruent Average Time:</td><td><%= @incongruent_avg %>ms</td></tr>	
+	<tr><td>Total Correct Incongruent Trials:</td><td><%= @incongruent_count %></td></tr>	
+</table>

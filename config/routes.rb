@@ -22,6 +22,7 @@ Stroop::Application.routes.draw do
         get 'sessions'
         get 'sessions_csv'
         get 'stress_gen'
+        get 'user_total_avg'
       end
     end
     
